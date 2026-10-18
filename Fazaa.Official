@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pemesanan - fazaa.official</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        .container {
+            max-width: 480px;
+            margin: 30px auto;
+            padding: 20px;
+        }
+        .card {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+        p.sub {
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 13px;
+            margin-bottom: 25px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            font-weight: bold;
+            font-size: 14px;
+            display: block;
+            margin-bottom: 6px;
+            color: #34495e;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+        input:focus, select:focus, textarea:focus {
+            border-color: #25d366;
+            outline: none;
+        }
+        .btn-wa {
+            width: 100%;
+            background: #25d366;
+            color: white;
+            border: none;
+            padding: 12px;
+            margin-top: 15px;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .btn-wa:hover {
+            background: #20ba5a;
+        }
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 12px;
+            color: #7f8c8d;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="card">
+        <h1>fazaa.official</h1>
+        <p class="sub">Formulir Pemesanan Layanan Desain</p>
+        
+        <form onsubmit="kirimWA(event)">
+            <div class="form-group">
+                <label for="nama">Nama Lengkap:</label>
+                <input type="text" id="nama" placeholder="Masukkan nama Anda" required>
+            </div>
+
+            <div class="form-group">
+                <label for="layanan">Pilih Layanan Jasa:</label>
+                <select id="layanan" required>
+                    <option value="" disabled selected>-- Pilih Jenis Desain --</option>
+                    <option value="Desain Poster">Desain Poster</option>
+                    <option value="Desain Banner">Desain Banner</option>
+                    <option value="Desain Barcode / QR Code Custom">Desain Barcode / QR Code Custom</option>
+                    <option value="Paket Bundling">Paket Bundling (Hemat)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="catatan">Detail / Catatan Pesanan:</label>
+                <textarea id="catatan" rows="4" placeholder="Jelaskan konsep, ukuran, atau tulisan yang diinginkan..."></textarea>
+            </div>
+
+            <button type="submit" class="btn-wa">Pesan via WhatsApp</button>
+        </form>
+    </div>
+    <footer>
+        <p>Layanan Pemesanan Resmi fazaa.official</p>
+    </footer>
+</div>
+
+<script>
+function kirimWA(event) {
+    event.preventDefault();
+    
+    var nama = document.getElementById('nama').value;
+    var layanan = document.getElementById('layanan').value;
+    var catatan = document.getElementById('catatan').value;
+    var nomorWA = "6283196262914";
+
+    var pesan = "Halo Fazaa Official, saya ingin memesan jasa desain.\n\n" +
+                "*Nama:* " + nama + "\n" +
+                "*Pilihan Layanan:* " + layanan + "\n" +
+                "*Detail/Catatan:* " + (catatan ? catatan : "-");
+
+    var url = "https://wa.me/" + nomorWA + "?text=" + encodeURIComponent(pesan);
+    window.open(url, '_blank');
+}
+</script>
+
+</body>
+</html>
