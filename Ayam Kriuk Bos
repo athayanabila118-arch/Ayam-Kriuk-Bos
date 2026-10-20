@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AYAM KRIUK BOS</title>
+<style>
+*{box-sizing:border-box} body{font-family:system-ui; background:#fff7ed; margin:0; padding-bottom:90px}
+.header{background:white; padding:15px; position:sticky; top:0; box-shadow:0 2px 10px #ddd}
+.promo{margin:12px; background:linear-gradient(90deg,#ff6a00,#ff9a00); color:white; padding:14px; border-radius:14px; font-weight:bold}
+.card{background:white; margin:12px; border-radius:16px; padding:12px; display:flex; gap:12px; box-shadow:0 2px 8px #0001}
+.card img{width:110px; height:110px; border-radius:12px; object-fit:cover}
+.price{color:#ea580c; font-weight:bold; font-size:18px}
+.btn{border:none; background:#ff5722; color:white; padding:8px 14px; border-radius:10px; font-weight:bold}
+.cart{position:fixed; bottom:0; left:0; right:0; background:white; padding:12px; border-radius:20px 20px 0 0; box-shadow:0 -4px 20px #0002}
+input{width:100%; padding:12px; border:1px solid #ddd; border-radius:10px; margin-top:6px}
+</style>
+</head>
+<body>
+
+<div class="header"><b>🍗 AYAM KRIUK BOS</b><br><small>Crispy • Delivery 20-30 menit • 4.8⭐ (1.2k reviews)</small></div>
+<div class="promo">PROMO HARI INI! 🔥 DISKON 20% MIN BELI 25K</div>
+
+<div style="padding:0 12px">
+<input id="nama" placeholder="Nama kamu">
+<input id="alamat" placeholder="Alamat / No Meja">
+</div>
+
+<div class="card">
+<img src="dada.jpg">
+<div><b>Dada Fried Chicken</b><br><small>Crispy & Juicy • 500+ terjual • 4.9⭐</small><br><br><span class="price">Rp 2.500</span> <button class="btn" onclick="add('Dada',2500)">Order +</button></div>
+</div>
+
+<div class="card">
+<img src="paha.jpg">
+<div><b>Paha Fried Chicken</b><br><small>Gurih & Renyah • 320+ terjual • 4.8⭐</small><br><br><span class="price">Rp 2.000</span> <button class="btn" onclick="add('Paha',2000)">Order +</button></div>
+</div>
+
+<div class="card">
+<img src="sayap.jpg">
+<div><b>Sayap Fried Chicken</b><br><small>Crunchy & Gurih • 410+ terjual • 4.7⭐</small><br><br><span class="price">Rp 1.500</span> <button class="btn" onclick="add('Sayap',1500)">Order +</button></div>
+</div>
+
+<div class="cart">
+<div id="list">Keranjang kosong</div>
+<button onclick="kirim()" style="width:100%; margin-top:10px; background:#16a34a; color:white; border:none; padding:14px; border-radius:12px; font-weight:bold">Pesan Sekarang via WhatsApp</button>
+</div>
+
+<script>
+let data={}; let total=0;
+function add(nama,harga){
+ data[nama]=(data[nama]||0)+1; total+=harga; render();
+}
+function render(){
+ let t=""; for(let k in data) t+=`${k} x ${data[k]}<br>`;
+ let pajak=total*0.1; let akhir=total+pajak;
+ if(total==0) t="Keranjang kosong";
+ else t+=`<small>Subtotal Rp ${total} | Pajak 10% Rp ${pajak} | <b>TOTAL Rp ${akhir}</b></small>`;
+ document.getElementById('list').innerHTML=t;
+}
+function kirim(){
+ if(total==0) return alert("Keranjang kosong");
+ let nama=document.getElementById('nama').value||"Customer";
+ let alamat=document.getElementById('alamat').value||"-";
+ let pajak=total*0.1; let akhir=total+pajak;
+ let pesan=`Halo AYAM KRIUK BOS 🍗%0A%0ANama: ${nama}%0AAlamat: ${alamat}%0A---------------------------%0A`;
+ for(let k in data) pesan+=`${k} x ${data[k]}%0A`;
+ pesan+=`---------------------------%0ASubtotal: Rp ${total}%0APajak: Rp ${pajak}%0ATOTAL: Rp ${akhir}`;
+ window.open(`https://wa.me/628998085054?text=${pesan}`,'_blank');
+}
+</script>
+</body>
+</html>
